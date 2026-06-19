@@ -1,0 +1,918 @@
+body.login-codex {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #fafafa;
+    overflow-x: hidden;
+}
+body.login-codex #page, body.login-codex #page-wrapper, body.login-codex #page-content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+body.login-codex header, body.login-codex nav.navbar, body.login-codex #page-header, body.login-codex footer, body.login-codex #page-footer { display: none !important; }
+.codex-hidden-main { display: none !important; }
+
+/* ========== KEYFRAMES ========== */
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float1 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes float2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes float3 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.05); opacity: 0.6; }
+}
+
+/* ========== LAYOUT ========== */
+.codex-login-wrapper {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* ========== LEFT PANEL ========== */
+.codex-login-left {
+    padding: 45px 60px;
+    background: linear-gradient(135deg, #fff5f0 0%, #fef9f5 40%, #fff 100%);
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    animation: slideInLeft 0.7s ease-out;
+}
+.codex-login-left::before {
+    content: ''; position: absolute; top: -150px; right: -120px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,49,42,0.12) 0%, rgba(232,49,42,0) 70%);
+    z-index: 0;
+}
+.codex-login-left::after {
+    content: ''; position: absolute; bottom: -120px; left: -100px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(99,102,241,0.10) 0%, rgba(99,102,241,0) 70%);
+    z-index: 0;
+}
+.codex-login-left > * { position: relative; z-index: 1; }
+
+.codex-login-left .brand { margin-bottom: 32px; }
+.codex-login-left .brand img { height: 70px; width: auto; }
+
+.codex-login-left .hero-title {
+    font-size: 46px; font-weight: 800; line-height: 1.1;
+    margin: 0 0 14px; color: #111827; letter-spacing: -1px;
+}
+.codex-login-left .hero-title .accent {
+    background: linear-gradient(135deg, #E8312A 0%, #ff5e3a 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.codex-login-left .hero-sub { color: #6b7280; font-size: 18px; margin: 0 0 24px; font-weight: 400; }
+
+/* Feature pills */
+.feature-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.feature-pills .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid rgba(232,49,42,0.15);
+    padding: 8px 14px; border-radius: 999px;
+    font-size: 13px; font-weight: 500; color: #374151;
+}
+.feature-pills .pill .check {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px; background: #E8312A; color: #fff;
+    border-radius: 50%; font-size: 10px; font-weight: 700;
+}
+
+/* Illustration with backdrop + floating badges */
+.illustration-wrap {
+    position: relative; margin: 10px 0 30px;
+    max-width: 560px;
+}
+.illustration-backdrop {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%; aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,49,42,0.08) 0%, rgba(232,49,42,0.02) 50%, transparent 70%);
+    animation: pulse 4s ease-in-out infinite;
+    z-index: 0;
+}
+.hero-illustration {
+    position: relative; z-index: 1;
+    max-width: 100%; width: 100%;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.10));
+}
+
+.floating-badge {
+    position: absolute; z-index: 2;
+    background: #fff;
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+    display: flex; align-items: center; gap: 10px;
+    backdrop-filter: blur(10px);
+}
+.floating-badge .badge-icon {
+    width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+}
+.floating-badge .badge-text { display: flex; flex-direction: column; line-height: 1.2; }
+.floating-badge .badge-text strong { font-size: 13px; color: #111827; font-weight: 600; }
+.floating-badge .badge-text span { font-size: 11px; color: #6b7280; margin-top: 2px; }
+
+.badge-1 { top: -2%; right: -12%; animation: float1 4s ease-in-out infinite; }
+.badge-2 { top: 38%; left: -18%; animation: float2 5s ease-in-out infinite 0.5s; }
+.badge-3 { bottom: -2%; right: -10%; animation: float3 4.5s ease-in-out infinite 1s; }
+
+/* Stats strip */
+.stats-strip {
+    display: flex; align-items: center; gap: 24px;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 16px;
+    margin-top: auto;
+    width: fit-content;
+}
+.stats-strip .stat { display: flex; flex-direction: column; }
+.stats-strip .stat strong {
+    font-size: 22px; font-weight: 700; color: #111827;
+    background: linear-gradient(135deg, #E8312A 0%, #ff5e3a 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+.stats-strip .stat span { font-size: 12px; color: #6b7280; margin-top: 4px; }
+.stats-strip .stat-divider { width: 1px; height: 30px; background: #e5e7eb; }
+
+/* ========== RIGHT PANEL ========== */
+.codex-login-right {
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px; background: #fafafa;
+    position: relative;
+    animation: fadeInUp 0.7s ease-out 0.2s both;
+}
+.codex-login-right::before {
+    content: ''; position: absolute; top: 50%; right: -150px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,49,42,0.06) 0%, transparent 70%);
+    transform: translateY(-50%);
+}
+
+.login-card {
+    width: 100%; max-width: 460px; background: #fff;
+    padding: 56px 48px; border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+    position: relative; z-index: 1;
+}
+.login-card h2 { font-size: 32px; font-weight: 700; text-align: center; margin: 0 0 10px; color: #111827; }
+.login-card .subtitle { text-align: center; color: #6b7280; margin: 0 0 36px; font-size: 15px; }
+
+.login-error { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; }
+
+.codex-form .form-field { margin-bottom: 20px; }
+.codex-form .form-field label { display: block; font-size: 13px; font-weight: 600; color: #374151; margin-bottom: 8px; }
+.codex-form .input-wrap { position: relative; }
+.codex-form .input-wrap .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #9ca3af; font-size: 15px; }
+.codex-form .input-wrap input {
+    width: 100%; padding: 15px 16px 15px 46px;
+    border: 1.5px solid #e5e7eb; border-radius: 12px; font-size: 15px;
+    background: #fafafa; box-sizing: border-box; transition: all 0.2s ease;
+}
+.codex-form .input-wrap input:focus { border-color: #E8312A; background: #fff; box-shadow: 0 0 0 4px rgba(232,49,42,0.08); outline: none; }
+.codex-form .input-wrap input::placeholder { color: #9ca3af; }
+
+.codex-form .form-meta { display: flex; justify-content: space-between; align-items: center; margin: 8px 0 28px; }
+.codex-form .remember-check { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #4b5563; margin: 0; cursor: pointer; }
+.codex-form .remember-check input { margin: 0; }
+.codex-form .forgot-link { color: #E8312A; font-size: 14px; font-weight: 600; text-decoration: none; }
+.codex-form .forgot-link:hover { text-decoration: underline; }
+
+.codex-form .codex-signin-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #E8312A 0%, #ff5e3a 100%);
+    color: #fff; border: none;
+    padding: 16px; border-radius: 12px; font-weight: 600; font-size: 16px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(232,49,42,0.3);
+    transition: all 0.2s ease;
+}
+.codex-form .codex-signin-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(232,49,42,0.4); }
+
+.powered-by { text-align: center; margin-top: 36px; color: #9ca3af; font-size: 13px; }
+.powered-by strong { display: block; color: #6366f1; font-size: 20px; font-weight: 700; margin-top: 4px; font-style: italic; letter-spacing: -0.5px; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1100px) {
+    .codex-login-left { padding: 40px; }
+    .codex-login-left .hero-title { font-size: 38px; }
+    .floating-badge { padding: 8px 12px; }
+    .floating-badge .badge-text strong { font-size: 12px; }
+    .floating-badge .badge-text span { font-size: 10px; }
+}
+@media (max-width: 900px) {
+    .codex-login-wrapper { grid-template-columns: 1fr; }
+    .codex-login-left { display: none; }
+}
+
+/* ====================================================== */
+/* ===========    CODEX DASHBOARD (Mockup 2)    ========= */
+/* ====================================================== */
+
+body.codex-dashboard {
+    margin: 0;
+    background: #f7f5f0;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+
+    /* Nuke Moove chrome on this layout. */
+    #page-header, #topofscroll > nav, .navbar, #page-footer, footer,
+    #nav-drawer, .drawer, #fixed-side-drawer-content, .secondarynavigation,
+    .breadcrumb, #page-navbar { display: none !important; }
+    #page, #page-content, #region-main, #region-main-box,
+    [role="main"], .main-inner { all: unset; display: block; }
+
+    .codex-app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+    /* ---------- Sidebar ---------- */
+    .codex-sidebar {
+        background: #fff; border-right: 1px solid #e9ebef;
+        padding: 22px 16px; display: flex; flex-direction: column; gap: 4px;
+        position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    }
+    .codex-sidebar-logo {
+        display: block; padding: 4px 12px 22px; border-bottom: 1px solid #e9ebef;
+        margin-bottom: 14px;
+    }
+    .codex-sidebar-logo img { max-width: 100%; height: 44px; width: auto; display: block; }
+
+    .codex-nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .codex-nav-item {
+        display: flex; align-items: center; gap: 12px;
+        padding: 11px 14px; border-radius: 10px;
+        color: #374151; text-decoration: none;
+        font-size: 14px; font-weight: 500;
+        transition: all 0.15s ease;
+    }
+    .codex-nav-item:hover { background: #fafafa; color: #111827; text-decoration: none; }
+    .codex-nav-item.active { background: #FEF2F1; color: #E8312A; font-weight: 600; }
+    .codex-nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .codex-nav-divider { height: 1px; background: #e9ebef; margin: 16px 8px; }
+
+    /* ---------- Topbar ---------- */
+    .codex-main-wrap { min-width: 0; }
+    .codex-topbar {
+        display: flex; justify-content: flex-end; align-items: center;
+        gap: 14px; padding: 18px 32px;
+    }
+    .codex-icon-btn {
+        position: relative; width: 40px; height: 40px;
+        border-radius: 10px; background: #fff; border: 1px solid #e9ebef;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer;
+    }
+    .codex-icon-btn:hover { background: #fafafa; }
+    .codex-icon-btn svg { width: 18px; height: 18px; color: #374151; }
+    .codex-badge {
+        position: absolute; top: -4px; right: -4px;
+        min-width: 18px; height: 18px; padding: 0 5px;
+        background: #E8312A; color: white;
+        border-radius: 10px; font-size: 10px; font-weight: 700;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #f7f5f0;
+    }
+    .codex-user-chip {
+        display: flex; align-items: center; gap: 10px;
+        padding: 4px 12px 4px 4px; background: #fff;
+        border: 1px solid #e9ebef; border-radius: 999px;
+        cursor: pointer;
+    }
+    .codex-user-chip:hover { background: #fafafa; }
+    .codex-avatar {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: linear-gradient(135deg, #E8312A, #f97316);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-weight: 700; font-size: 13px;
+    }
+    .codex-user-meta { display: flex; flex-direction: column; line-height: 1.2; }
+    .codex-user-name { font-size: 13px; font-weight: 600; color: #111827; }
+    .codex-user-role { font-size: 11px; color: #6b7280; }
+    .codex-chevron { width: 14px; height: 14px; color: #9ca3af; }
+
+    /* ---------- Main ---------- */
+    .codex-main { padding: 0 32px 48px; max-width: 1400px; }
+
+    /* ---------- Hero ---------- */
+    .codex-hero {
+        position: relative; border-radius: 20px;
+        background: linear-gradient(135deg, #E8312A 0%, #f56050 60%, #f97316 100%);
+        padding: 36px 40px; color: white; overflow: hidden;
+        margin-bottom: 36px; min-height: 180px;
+        display: flex; align-items: center;
+    }
+    .codex-hero::before {
+        content: ''; position: absolute; inset: 0;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0%, transparent 40%),
+            radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    .codex-hero-content { flex: 1; position: relative; z-index: 2; max-width: 480px; }
+    .codex-hero h1 {
+        font-family: 'Fraunces', serif; font-weight: 700;
+        font-size: 30px; line-height: 1.15; margin: 0 0 8px;
+        letter-spacing: -0.5px; color: white;
+    }
+    .codex-hero p { font-size: 15px; opacity: 0.95; margin: 0 0 22px; }
+    .codex-btn-white {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: white; color: #E8312A;
+        padding: 12px 22px; border-radius: 10px;
+        font-weight: 600; font-size: 14px;
+        text-decoration: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: transform 0.15s ease;
+    }
+    .codex-btn-white:hover { transform: translateY(-1px); color: #E8312A; text-decoration: none; }
+
+    .codex-classes-card {
+        position: absolute; top: 28px; right: 32px;
+        background: white; border-radius: 14px;
+        padding: 14px 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        z-index: 3; min-width: 120px;
+    }
+    .codex-classes-label { font-size: 11px; color: #6b7280; font-weight: 500; }
+    .codex-classes-num {
+        font-family: 'Fraunces', serif;
+        font-size: 36px; font-weight: 700;
+        color: #E8312A; line-height: 1; margin: 4px 0;
+    }
+
+    /* ---------- Section headers ---------- */
+    .codex-section-header {
+        display: flex; justify-content: space-between; align-items: baseline;
+        margin: 8px 0 18px;
+    }
+    .codex-section-header h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 22px; font-weight: 700;
+        color: #111827; letter-spacing: -0.3px;
+        margin: 0;
+    }
+    .codex-view-all { font-size: 13px; color: #E8312A; font-weight: 600; text-decoration: none; }
+    .codex-view-all:hover { text-decoration: underline; color: #E8312A; }
+
+    /* ---------- Continue Teaching ---------- */
+    .codex-continue-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        gap: 16px; margin-bottom: 40px;
+    }
+    .codex-continue-card {
+        background: #fff; border: 1px solid #e9ebef;
+        border-radius: 14px; padding: 18px;
+        transition: all 0.2s ease;
+    }
+    .codex-continue-card:hover {
+        border-color: #d1d5db;
+        box-shadow: 0 4px 6px -1px rgba(17,24,39,0.06);
+        transform: translateY(-2px);
+    }
+    .codex-continue-top { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .codex-continue-icon {
+        width: 42px; height: 42px; border-radius: 10px;
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0; font-family: 'Fraunces', serif;
+        font-weight: 700; font-size: 20px;
+    }
+    .codex-continue-icon.palette-math    { background: #FFF4E6; color: #C2410C; }
+    .codex-continue-icon.palette-science { background: #ECFCCB; color: #4D7C0F; }
+    .codex-continue-meta { flex: 1; min-width: 0; }
+    .codex-continue-subject { font-size: 11px; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+    .codex-continue-chapter { font-size: 15px; font-weight: 600; color: #111827; margin-top: 2px; }
+    .codex-continue-num { font-size: 12px; color: #6b7280; margin-top: 2px; }
+
+    .codex-progress-row { display: flex; justify-content: space-between; align-items: center; }
+    .codex-progress-bar { flex: 1; height: 6px; background: #f1f3f5; border-radius: 3px; overflow: hidden; margin-right: 10px; }
+    .codex-progress-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .codex-progress-fill.palette-science { background: linear-gradient(90deg, #16a34a, #4ade80); }
+    .codex-progress-pct { font-size: 11px; color: #6b7280; font-weight: 600; white-space: nowrap; }
+
+    /* ---------- My Subjects ---------- */
+    .codex-subjects-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+    .codex-subject-card {
+        border-radius: 16px; padding: 18px;
+        height: 150px; position: relative; overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .codex-subject-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px -5px rgba(17,24,39,0.08); }
+    .codex-subject-card.palette-math    { background: #FFF4E6; }
+    .codex-subject-card.palette-science { background: #ECFCCB; }
+    .codex-subject-card.palette-english { background: #FCE7F3; }
+    .codex-subject-card.palette-evs     { background: #DCFCE7; }
+    .codex-subject-card.palette-social  { background: #FFEDD5; }
+    .codex-subject-card h3 {
+        font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700;
+        color: #111827; letter-spacing: -0.2px; margin: 0;
+        position: relative; z-index: 2;
+    }
+    .codex-chapter-count { font-size: 12px; color: #374151; margin-top: 4px; font-weight: 500; position: relative; z-index: 2; }
+    .codex-subject-illustration { position: absolute; bottom: -8px; right: -8px; width: 90px; height: 90px; z-index: 1; }
+    .codex-subject-illustration svg { width: 100%; height: 100%; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1200px) {
+        .codex-subjects-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+        .codex-app { grid-template-columns: 1fr; }
+        .codex-sidebar { display: none; }
+        .codex-continue-grid { grid-template-columns: 1fr; }
+        .codex-subjects-grid { grid-template-columns: repeat(2, 1fr); }
+        .codex-classes-card { display: none; }
+        .codex-main { padding: 0 16px 32px; }
+    }
+}
+
+body.codex-dashboard {
+    .codex-empty {
+        background: #fff;
+        border: 1px dashed #d1d5db;
+        border-radius: 14px;
+        padding: 40px;
+        text-align: center;
+        color: #6b7280;
+    }
+    .codex-icon-btn { text-decoration: none; }
+    .codex-user-chip { text-decoration: none; color: inherit; }
+}
+
+body.codex-dashboard {
+    .codex-sidebar-logo img { height: 36px !important; }
+    .codex-subjects-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+/* ====================================================== */
+/* ===  CODEX INCOURSE WRAPPER (videos, PDFs, etc)   ===  */
+/* ====================================================== */
+
+body.codex-incourse {
+    margin: 0;
+    background: #f7f5f0;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+
+    /* Hide Moove chrome inside our wrapper */
+    #page-header, #topofscroll > nav, .navbar.fixed-top, .navbar.navbar-light,
+    #page-footer, footer.py-3, #nav-drawer, .drawer,
+    .secondarynavigation, #page-navbar { display: none !important; }
+
+    /* Strip Moodle page wrappers but keep main content */
+    #page { all: unset; display: block; padding: 0; margin: 0; max-width: none; }
+    #page-content { all: unset; display: block; }
+    #region-main, #region-main-box, [role="main"], .main-inner {
+        all: unset; display: block; background: transparent;
+    }
+
+    .codex-app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+    .codex-incourse-main { padding: 24px 32px 48px; max-width: 1400px; }
+
+    .codex-breadcrumb {
+        display: flex; align-items: center; gap: 8px;
+        font-size: 13px; color: #6b7280;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+    }
+    .codex-breadcrumb a { color: #6b7280; text-decoration: none; }
+    .codex-breadcrumb a:hover { color: #E8312A; }
+    .codex-breadcrumb .sep { color: #d1d5db; }
+    .codex-breadcrumb .current {
+        color: #111827; font-weight: 600;
+        max-width: 400px;
+        overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .codex-incourse-content {
+        background: #fff;
+        border: 1px solid #e9ebef;
+        border-radius: 16px;
+        padding: 32px;
+        min-height: 400px;
+    }
+
+    /* Style Moodle's content headings to feel native to our UI */
+    .codex-incourse-content h2,
+    .codex-incourse-content .activity-header h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 26px; font-weight: 700;
+        color: #111827; letter-spacing: -0.3px;
+        margin: 0 0 16px;
+    }
+    .codex-incourse-content h3 {
+        font-family: 'Fraunces', serif;
+        font-size: 20px; font-weight: 700;
+        margin: 24px 0 12px;
+    }
+
+    /* Make embedded media (video, iframe) responsive */
+    .codex-incourse-content video,
+    .codex-incourse-content iframe {
+        max-width: 100%; border-radius: 8px;
+    }
+    .codex-incourse-content .mediaplugin video { width: 100%; height: auto; }
+    .codex-incourse-content .resourceimage,
+    .codex-incourse-content .resourcecontent img { max-width: 100%; height: auto; }
+    .codex-incourse-content object[type="application/pdf"],
+    .codex-incourse-content embed[type="application/pdf"],
+    .codex-incourse-content iframe[src*=".pdf"] {
+        width: 100%; height: 80vh; border: 0; border-radius: 8px;
+    }
+
+    /* Hide native Moodle in-content nav we don't need (settings cog block, etc) */
+    .codex-incourse-content .activity-navigation .row { gap: 12px; }
+    .codex-incourse-content .singlebutton .btn,
+    .codex-incourse-content .btn-primary {
+        background: #E8312A; border-color: #E8312A;
+        border-radius: 8px; font-weight: 600;
+    }
+    .codex-incourse-content .singlebutton .btn:hover,
+    .codex-incourse-content .btn-primary:hover {
+        background: #c8261f; border-color: #c8261f;
+    }
+
+    @media (max-width: 900px) {
+        .codex-app { grid-template-columns: 1fr; }
+        .codex-sidebar { display: none; }
+        .codex-incourse-main { padding: 16px; }
+        .codex-incourse-content { padding: 20px; }
+    }
+}
+
+/* ====================================================== */
+/* ===   SHARED SHELL STYLES (all codex-* layouts)   ==== */
+/* ====================================================== */
+
+body.codex-incourse {
+    .codex-app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+    .codex-sidebar {
+        background: #fff; border-right: 1px solid #e9ebef;
+        padding: 22px 16px; display: flex; flex-direction: column; gap: 4px;
+        position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    }
+    .codex-sidebar-logo {
+        display: block; padding: 4px 12px 22px; border-bottom: 1px solid #e9ebef;
+        margin-bottom: 14px;
+    }
+    .codex-sidebar-logo img { height: 36px !important; width: auto !important; display: block; max-width: 100%; }
+    .codex-nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .codex-nav-item {
+        display: flex; align-items: center; gap: 12px;
+        padding: 11px 14px; border-radius: 10px;
+        color: #374151; text-decoration: none;
+        font-size: 14px; font-weight: 500;
+        transition: all 0.15s ease;
+    }
+    .codex-nav-item:hover { background: #fafafa; color: #111827; text-decoration: none; }
+    .codex-nav-item.active { background: #FEF2F1; color: #E8312A; font-weight: 600; }
+    .codex-nav-item svg { width: 18px !important; height: 18px !important; flex-shrink: 0; }
+    .codex-nav-divider { height: 1px; background: #e9ebef; margin: 16px 8px; }
+
+    .codex-main-wrap { min-width: 0; }
+    .codex-topbar {
+        display: flex; align-items: center; gap: 14px;
+        padding: 18px 32px;
+    }
+    .codex-searchbar {
+        flex: 1; max-width: 360px;
+        display: flex; align-items: center; gap: 8px;
+        background: #fff; border: 1px solid #e9ebef;
+        border-radius: 999px; padding: 8px 16px;
+    }
+    .codex-searchbar svg { width: 16px !important; height: 16px !important; color: #9ca3af; flex-shrink: 0; }
+    .codex-searchbar input { border: 0; outline: 0; background: transparent; flex: 1; font-size: 13px; font-family: inherit; color: #374151; }
+
+    .codex-icon-btn {
+        position: relative; width: 40px; height: 40px;
+        border-radius: 10px; background: #fff; border: 1px solid #e9ebef;
+        display: flex; align-items: center; justify-content: center;
+        text-decoration: none; flex-shrink: 0;
+    }
+    .codex-icon-btn svg { width: 18px !important; height: 18px !important; color: #374151; }
+
+    .codex-user-chip {
+        display: flex; align-items: center; gap: 10px;
+        padding: 4px 12px 4px 4px; background: #fff;
+        border: 1px solid #e9ebef; border-radius: 999px;
+        text-decoration: none; color: inherit;
+        flex-shrink: 0;
+    }
+    .codex-avatar {
+        width: 34px; height: 34px; border-radius: 50%;
+        background: linear-gradient(135deg, #E8312A, #f97316);
+        display: flex; align-items: center; justify-content: center;
+        color: white; font-weight: 700; font-size: 13px;
+        flex-shrink: 0;
+    }
+    .codex-user-meta { display: flex; flex-direction: column; line-height: 1.2; }
+    .codex-user-name { font-size: 13px; font-weight: 600; color: #111827; }
+    .codex-user-role { font-size: 11px; color: #6b7280; }
+    .codex-chevron { width: 14px !important; height: 14px !important; color: #9ca3af; flex-shrink: 0; }
+
+    /* Aggressive Moove suppression — anything outside .codex-app is hidden */
+    > *:not(.codex-app):not(script):not(style):not(noscript) {
+        display: none !important;
+    }
+
+    /* Also nuke specific Moove elements that might be injected inside #page */
+    .header-maxwidth, #topofscroll > *:not(.codex-app),
+    .navbar, .navbar-light, .navbar-collapse,
+    #page-header, #page-navbar, #page-footer,
+    .moove-header, .moove-footer,
+    #nav-drawer, .drawer-toggler,
+    nav.navigation, .secondarynavigation,
+    .breadcrumb-nav, .breadcrumb {
+        display: none !important;
+    }
+}
+
+/* Codex plugin app pages (assessments, interactive, chapter view) */
+.codex-app-main {
+    margin-left: 260px;
+    padding: 32px 40px;
+    min-height: 100vh;
+    background: #FAFAF7;
+}
+.codex-page-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    gap: 24px; margin-bottom: 28px; flex-wrap: wrap;
+}
+.codex-page-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 32px; color: #1C5A7A; margin: 0 0 4px;
+}
+.codex-page-sub { color: #5A6B73; font-size: 14px; margin: 0; }
+.codex-search input {
+    width: 320px; padding: 10px 16px; border-radius: 999px;
+    border: 1px solid #D8DEE2; font-size: 14px; background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+}
+.codex-search input:focus {
+    outline: none; border-color: #1C5A7A;
+    box-shadow: 0 0 0 3px rgba(28,90,122,.12);
+}
+
+.codex-tree { display: flex; flex-direction: column; gap: 14px; }
+.codex-empty {
+    background: #fff; border-radius: 12px; padding: 40px;
+    text-align: center; color: #8A99A0; border: 1px dashed #D8DEE2;
+}
+.codex-subject {
+    background: #fff; border-radius: 14px; overflow: hidden;
+    border: 1px solid #ECEFF1; box-shadow: 0 1px 2px rgba(0,0,0,.02);
+}
+.codex-subject-head {
+    display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+    cursor: pointer; list-style: none; user-select: none;
+    font-family: 'Fraunces', serif; font-size: 18px; color: #1C5A7A;
+}
+.codex-subject-head::-webkit-details-marker { display: none; }
+.codex-subject-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--accent, #1C5A7A);
+}
+.codex-subject-name { flex: 1; font-weight: 600; }
+.codex-count {
+    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+    color: var(--accent, #1C5A7A); background: var(--soft, #EAF2F6);
+    padding: 4px 10px; border-radius: 999px;
+}
+.codex-chapter { padding: 8px 20px 16px 38px; }
+.codex-chapter-head {
+    font-size: 13px; font-weight: 600; color: #5A6B73;
+    text-transform: uppercase; letter-spacing: .5px;
+    margin: 8px 0 8px;
+}
+.codex-quiz-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.codex-quiz-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 8px;
+    background: #F7F9FA; text-decoration: none; color: #1C2A30;
+    transition: background .12s, transform .12s;
+}
+.codex-quiz-item:hover {
+    background: var(--soft, #EAF2F6); transform: translateX(2px);
+    text-decoration: none; color: #1C2A30;
+}
+.codex-quiz-icon { font-size: 16px; }
+.codex-quiz-name { flex: 1; font-size: 14px; font-weight: 500; }
+.codex-quiz-type {
+    font-size: 11px; font-weight: 600; color: #5A6B73;
+    background: #fff; padding: 2px 8px; border-radius: 4px;
+    border: 1px solid #ECEFF1;
+}
+.codex-quiz-cta { font-size: 13px; color: #E8312A; font-weight: 500; }
+
+/* Codex app layout — sidebar + main content shell */
+body.codex-app-layout {
+    margin: 0;
+    background: #FAFAF7;
+}
+body.codex-app-layout .codex-shell {
+    display: flex;
+    min-height: 100vh;
+}
+body.codex-app-layout .codex-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+body.codex-app-layout .codex-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Codex browse grids — subjects.php + class_view.php */
+.codex-app-main {
+    margin-left: 0;
+    padding: 32px 40px;
+    max-width: 1400px;
+}
+.codex-page-header { margin-bottom: 28px; }
+.codex-page-title {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 32px; color: #1C5A7A; margin: 0 0 4px;
+}
+.codex-page-sub { color: #5A6B73; font-size: 14px; margin: 0; }
+.codex-back-link {
+    display: inline-block; color: #E8312A; text-decoration: none;
+    font-size: 13px; margin-bottom: 12px; font-weight: 500;
+}
+.codex-back-link:hover { text-decoration: underline; color: #E8312A; }
+
+/* Classes grid (subjects.php) */
+.codex-class-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.codex-class-card {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 22px 20px; border-radius: 14px;
+    background: var(--soft, #EAF2F6);
+    border: 1px solid rgba(0,0,0,.04);
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    min-height: 130px;
+}
+.codex-class-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    text-decoration: none;
+}
+.codex-class-card-icon { font-size: 28px; }
+.codex-class-card-name {
+    font-family: 'Fraunces', serif; font-size: 20px;
+    font-weight: 600; color: #1C2A30;
+}
+.codex-class-card-meta {
+    font-size: 13px; color: var(--accent, #5A6B73);
+    font-weight: 500;
+}
+
+/* Subjects grid (class_view.php) — matches /my/ My Subjects */
+.codex-subjects-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.codex-subject-card {
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 22px 20px; border-radius: 14px;
+    background: var(--soft, #EAF2F6);
+    border: 1px solid rgba(0,0,0,.04);
+    text-decoration: none;
+    transition: transform .15s, box-shadow .15s;
+    min-height: 140px;
+    position: relative;
+}
+.codex-subject-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    text-decoration: none;
+}
+.codex-subject-card-name {
+    font-family: 'Fraunces', serif; font-size: 18px;
+    font-weight: 600; color: #1C2A30; line-height: 1.3;
+}
+.codex-subject-card-meta {
+    font-size: 13px; color: #5A6B73; margin-top: 8px;
+}
+
+/* Enhanced class cards (subjects.php) */
+.codex-class-card {
+    position: relative; overflow: hidden;
+    min-height: 160px; padding: 22px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-radius: 16px; text-decoration: none;
+    background: var(--soft, #EAF2F6);
+    border: 1px solid rgba(0,0,0,.04);
+    transition: transform .15s, box-shadow .15s;
+}
+.codex-class-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(0,0,0,.08);
+    text-decoration: none;
+}
+.codex-class-card-illo {
+    position: absolute; right: -10px; bottom: -10px;
+    width: 90px; height: 90px; opacity: 0.85;
+    pointer-events: none;
+}
+.codex-class-card-illo svg { width: 100%; height: 100%; }
+.codex-class-card-body { position: relative; z-index: 1; }
+.codex-class-card-name {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 22px; color: #1C2A30; margin-bottom: 4px;
+}
+.codex-class-card-meta {
+    font-size: 13px; color: var(--accent, #1C5A7A); font-weight: 500;
+}
+
+/* Subject cards (class_view.php) — mirror /my/ My Subjects look */
+.codex-subjects-grid {
+    display: grid; gap: 18px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.codex-subject-card {
+    position: relative; overflow: hidden;
+    min-height: 160px; padding: 22px 20px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-radius: 14px; text-decoration: none;
+    border: 1px solid rgba(0,0,0,.04);
+    transition: transform .15s, box-shadow .15s;
+}
+.codex-subject-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0,0,0,.07);
+    text-decoration: none;
+}
+.codex-subject-card-body { position: relative; z-index: 1; }
+.codex-subject-card-name {
+    font-family: 'Fraunces', serif; font-weight: 600;
+    font-size: 18px; color: #1C2A30; line-height: 1.3; margin-bottom: 4px;
+}
+.codex-subject-card-meta { font-size: 13px; color: #5A6B73; }
+.codex-subject-card-illo {
+    position: absolute; right: -8px; bottom: -10px;
+    width: 90px; height: 90px; opacity: 0.9;
+    pointer-events: none;
+}
+.codex-subject-card-illo svg { width: 100%; height: 100%; }
+
+/* Moodle modal z-index fix — make sure modals always sit above codex chrome */
+.modal-backdrop { z-index: 10050 !important; }
+.modal.show     { z-index: 10051 !important; }
+.codex-sidebar  { z-index: 100; }
+body.modal-open .codex-sidebar { pointer-events: none; }
+
+/* Force Moodle modals to render visibly above codex chrome */
+.modal-backdrop,
+.modal-backdrop.in,
+.modal-backdrop.show {
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #000 !important;
+    opacity: 0.5 !important;
+    z-index: 10050 !important;
+    display: block !important;
+}
+.modal,
+.modal.in,
+.modal.show {
+    display: block !important;
+    position: fixed !important;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 10051 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    outline: 0;
+}
+.modal-dialog {
+    position: relative !important;
+    margin: 30px auto !important;
+    max-width: 600px;
+    pointer-events: auto !important;
+}
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    pointer-events: auto !important;
+}
+body.modal-open {
+    overflow: hidden !important;
+}

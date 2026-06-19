@@ -1,11 +1,56 @@
-# Ignore everything
-*
+# Ignore all Moodle core files except our custom work
+admin/
+auth/
+availability/
+backup/
+badges/
+blocks/
+blog/
+cache/
+calendar/
+cohort/
+comment/
+competency/
+completion/
+config.php
+course/
+customfield/
+dataformat/
+enrol/
+error/
+files/
+filter/
+grade/
+group/
+h5p/
+iplookup/
+lang/
+lib/
+login/
+message/
+mod/
+my/
+notes/
+payment/
+pix/
+plagiarism/
+portfolio/
+question/
+rating/
+report/
+repository/
+rss/
+search/
+tag/
+user/
+userpix/
+webservice/
+index.php
+version.php
 
-# Except our custom folders
+# Keep our custom folders
 !theme/codex/
 !theme/codex/**
 !local/codex/
 !local/codex/**
-
-# Ignore this gitignore itself from being ignored
 !.gitignore

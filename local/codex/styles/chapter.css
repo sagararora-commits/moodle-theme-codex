@@ -1,0 +1,123 @@
+/* Chapter view-specific styles (loaded after course.css) */
+
+body.codex-chapter .codex-breadcrumb {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: #6b7280;
+    margin-bottom: 18px;
+}
+body.codex-chapter .codex-breadcrumb a {
+    color: #6b7280; text-decoration: none;
+}
+body.codex-chapter .codex-breadcrumb a:hover {
+    color: #E8312A;
+}
+body.codex-chapter .codex-breadcrumb .sep {
+    color: #d1d5db;
+}
+body.codex-chapter .codex-breadcrumb .current {
+    color: #111827; font-weight: 600;
+}
+
+body.codex-chapter .codex-chapter-hero {
+    display: flex; align-items: center; gap: 28px;
+    padding: 32px 40px;
+    border-radius: 20px;
+    margin-bottom: 36px;
+    min-height: 160px;
+}
+body.codex-chapter .codex-chapter-hero.palette-math    { background: linear-gradient(120deg, #FFF4E6 0%, #FFE4C4 100%); }
+body.codex-chapter .codex-chapter-hero.palette-science { background: linear-gradient(120deg, #ECFCCB 0%, #D9F99D 100%); }
+body.codex-chapter .codex-chapter-hero.palette-english { background: linear-gradient(120deg, #FCE7F3 0%, #FBCFE8 100%); }
+body.codex-chapter .codex-chapter-hero.palette-evs     { background: linear-gradient(120deg, #DCFCE7 0%, #BBF7D0 100%); }
+body.codex-chapter .codex-chapter-hero.palette-social  { background: linear-gradient(120deg, #FFEDD5 0%, #FED7AA 100%); }
+
+body.codex-chapter .codex-chapter-num-large {
+    font-family: 'Fraunces', serif;
+    font-size: 72px; font-weight: 700;
+    line-height: 0.9;
+    background: rgba(255,255,255,0.6);
+    border-radius: 16px;
+    padding: 12px 22px;
+    color: #111827;
+    backdrop-filter: blur(8px);
+}
+body.codex-chapter .codex-chapter-hero.palette-math    .codex-chapter-num-large { color: #C2410C; }
+body.codex-chapter .codex-chapter-hero.palette-science .codex-chapter-num-large { color: #4D7C0F; }
+body.codex-chapter .codex-chapter-hero.palette-english .codex-chapter-num-large { color: #BE185D; }
+body.codex-chapter .codex-chapter-hero.palette-evs     .codex-chapter-num-large { color: #15803D; }
+body.codex-chapter .codex-chapter-hero.palette-social  .codex-chapter-num-large { color: #C2410C; }
+
+body.codex-chapter .codex-chapter-hero-text { flex: 1; }
+body.codex-chapter .codex-chapter-eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+    color: #6b7280; font-weight: 600; margin-bottom: 4px;
+}
+body.codex-chapter .codex-chapter-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 30px; font-weight: 700;
+    color: #111827; letter-spacing: -0.5px;
+    margin: 0 0 12px;
+}
+body.codex-chapter .codex-chapter-meta {
+    display: flex; align-items: center; gap: 10px;
+    color: #4b5563; font-size: 13px;
+}
+body.codex-chapter .codex-chapter-meta strong {
+    color: #111827; font-weight: 700;
+}
+body.codex-chapter .codex-chapter-meta .dot-sep {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: #9ca3af;
+}
+
+body.codex-chapter .codex-resource-group { margin-bottom: 32px; }
+body.codex-chapter .codex-count {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; color: #9ca3af; font-weight: 500;
+    margin-left: 6px;
+}
+
+body.codex-chapter .codex-resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 10px;
+}
+body.codex-chapter .codex-resource-card {
+    display: flex; align-items: center; gap: 14px;
+    background: #fff; border: 1px solid #e9ebef;
+    border-radius: 12px; padding: 14px 16px;
+    text-decoration: none; color: inherit;
+    transition: all 0.15s ease;
+}
+body.codex-chapter .codex-resource-card:hover {
+    border-color: #d1d5db;
+    background: #fafafa;
+    transform: translateX(2px);
+    text-decoration: none; color: inherit;
+}
+body.codex-chapter .codex-resource-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+body.codex-chapter .codex-resource-icon svg { width: 18px; height: 18px; }
+body.codex-chapter .codex-resource-card.palette-math    .codex-resource-icon { background: #FFF4E6; color: #C2410C; }
+body.codex-chapter .codex-resource-card.palette-science .codex-resource-icon { background: #ECFCCB; color: #4D7C0F; }
+body.codex-chapter .codex-resource-card.palette-english .codex-resource-icon { background: #FCE7F3; color: #BE185D; }
+body.codex-chapter .codex-resource-card.palette-evs     .codex-resource-icon { background: #DCFCE7; color: #15803D; }
+body.codex-chapter .codex-resource-card.palette-social  .codex-resource-icon { background: #FFEDD5; color: #C2410C; }
+
+body.codex-chapter .codex-resource-body { flex: 1; min-width: 0; }
+body.codex-chapter .codex-resource-name {
+    font-size: 14px; font-weight: 600; color: #111827;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+body.codex-chapter .codex-resource-tag {
+    font-size: 11px; color: #6b7280; font-weight: 500;
+    margin-top: 2px;
+}
+body.codex-chapter .codex-resource-arrow {
+    width: 16px; height: 16px; color: #9ca3af;
+    flex-shrink: 0;
+}

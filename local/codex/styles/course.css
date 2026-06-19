@@ -1,0 +1,536 @@
+/* ====================================================== */
+/* ====     CODEX COURSE DASHBOARD (Mockup 3)        ==== */
+/* ====================================================== */
+
+* { box-sizing: border-box; }
+body.codex-course {
+    margin: 0; padding: 0;
+    background: #f7f5f0;
+    color: #111827;
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Nuke moove chrome */
+body.codex-course #page-header,
+body.codex-course #topofscroll > nav,
+body.codex-course .navbar,
+body.codex-course #page-footer,
+body.codex-course footer,
+body.codex-course #nav-drawer,
+body.codex-course .drawer,
+body.codex-course .secondarynavigation,
+body.codex-course .breadcrumb,
+body.codex-course #page-navbar { display: none !important; }
+
+body.codex-course #page,
+body.codex-course #page-content,
+body.codex-course #region-main,
+body.codex-course #region-main-box,
+body.codex-course [role="main"],
+body.codex-course .main-inner { all: unset; display: block; }
+
+.codex-app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+
+/* Sidebar */
+.codex-sidebar {
+    background: #fff; border-right: 1px solid #e9ebef;
+    padding: 22px 16px; display: flex; flex-direction: column; gap: 4px;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+}
+.codex-sidebar-logo {
+    display: block; padding: 4px 12px 22px; border-bottom: 1px solid #e9ebef;
+    margin-bottom: 14px;
+}
+.codex-sidebar-logo img { height: 36px; width: auto; display: block; }
+.codex-nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.codex-nav-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 14px; border-radius: 10px;
+    color: #374151; text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    transition: all 0.15s ease;
+}
+.codex-nav-item:hover { background: #fafafa; color: #111827; text-decoration: none; }
+.codex-nav-item.active { background: #FEF2F1; color: #E8312A; font-weight: 600; }
+.codex-nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+.codex-nav-divider { height: 1px; background: #e9ebef; margin: 16px 8px; }
+
+/* Topbar */
+.codex-main-wrap { min-width: 0; }
+.codex-topbar {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 32px;
+}
+.codex-searchbar {
+    flex: 1; max-width: 360px;
+    display: flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid #e9ebef;
+    border-radius: 999px; padding: 8px 16px;
+}
+.codex-searchbar svg { width: 16px; height: 16px; color: #9ca3af; }
+.codex-searchbar input { border: 0; outline: 0; background: transparent; flex: 1; font-size: 13px; font-family: inherit; color: #374151; }
+.codex-icon-btn {
+    position: relative; width: 40px; height: 40px;
+    border-radius: 10px; background: #fff; border: 1px solid #e9ebef;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+}
+.codex-icon-btn svg { width: 18px; height: 18px; color: #374151; }
+.codex-user-chip {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px 12px 4px 4px; background: #fff;
+    border: 1px solid #e9ebef; border-radius: 999px;
+    text-decoration: none; color: inherit;
+}
+.codex-avatar {
+    width: 34px; height: 34px; border-radius: 50%;
+    background: linear-gradient(135deg, #E8312A, #f97316);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; font-size: 13px;
+}
+.codex-user-meta { display: flex; flex-direction: column; line-height: 1.2; }
+.codex-user-name { font-size: 13px; font-weight: 600; color: #111827; }
+.codex-user-role { font-size: 11px; color: #6b7280; }
+.codex-chevron { width: 14px; height: 14px; color: #9ca3af; }
+
+/* Main */
+.codex-main { padding: 0 32px 48px; max-width: 1400px; }
+
+/* Course hero */
+.codex-course-hero {
+    position: relative;
+    border-radius: 20px;
+    padding: 32px 40px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    display: flex; align-items: center;
+    min-height: 200px;
+}
+.codex-course-hero.palette-math    { background: linear-gradient(120deg, #FFF4E6 0%, #FFE4C4 100%); }
+.codex-course-hero.palette-science { background: linear-gradient(120deg, #ECFCCB 0%, #D9F99D 100%); }
+.codex-course-hero.palette-english { background: linear-gradient(120deg, #FCE7F3 0%, #FBCFE8 100%); }
+.codex-course-hero.palette-evs     { background: linear-gradient(120deg, #DCFCE7 0%, #BBF7D0 100%); }
+.codex-course-hero.palette-social  { background: linear-gradient(120deg, #FFEDD5 0%, #FED7AA 100%); }
+.codex-course-hero-text { flex: 1; z-index: 2; position: relative; }
+.codex-course-hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 32px; font-weight: 700; letter-spacing: -0.5px;
+    margin: 0 0 6px; color: #111827;
+}
+.codex-course-hero p { color: #4b5563; font-size: 14px; margin: 0 0 22px; max-width: 480px; }
+.codex-course-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+.codex-stat {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.85);
+    border-radius: 12px; padding: 10px 16px;
+    backdrop-filter: blur(8px);
+}
+.codex-stat-icon {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    color: #c2410c;
+}
+.codex-stat-icon svg { width: 16px; height: 16px; }
+.codex-stat-num { font-family: 'Fraunces', serif; font-size: 20px; font-weight: 700; color: #111827; line-height: 1; }
+.codex-stat-label { font-size: 11px; color: #6b7280; font-weight: 500; margin-top: 2px; }
+.codex-course-hero-illustration {
+    width: 180px; height: 180px;
+    flex-shrink: 0;
+    z-index: 1;
+}
+.codex-course-hero-illustration svg { width: 100%; height: 100%; }
+
+/* Section header */
+.codex-section-header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin: 8px 0 18px;
+}
+.codex-section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px; font-weight: 700;
+    color: #111827; letter-spacing: -0.3px;
+    margin: 0;
+}
+.codex-view-all { font-size: 13px; color: #E8312A; font-weight: 600; text-decoration: none; }
+.codex-view-all:hover { text-decoration: underline; color: #E8312A; }
+
+/* Chapter cards grid */
+.codex-chapters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+.codex-chapter-card {
+    background: #fff;
+    border: 1px solid #e9ebef;
+    border-radius: 14px;
+    padding: 18px;
+    text-decoration: none;
+    color: inherit;
+    display: flex; flex-direction: column;
+    transition: all 0.2s ease;
+    position: relative;
+}
+.codex-chapter-card:hover {
+    border-color: #d1d5db;
+    box-shadow: 0 10px 25px -5px rgba(17,24,39,0.08);
+    transform: translateY(-3px);
+    text-decoration: none; color: inherit;
+}
+.codex-chapter-num-badge {
+    display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    font-family: 'Fraunces', serif; font-size: 14px; font-weight: 700;
+    margin-bottom: 12px;
+}
+.codex-chapter-card.palette-math    .codex-chapter-num-badge { background: #FFF4E6; color: #C2410C; }
+.codex-chapter-card.palette-science .codex-chapter-num-badge { background: #ECFCCB; color: #4D7C0F; }
+.codex-chapter-card.palette-english .codex-chapter-num-badge { background: #FCE7F3; color: #BE185D; }
+.codex-chapter-card.palette-evs     .codex-chapter-num-badge { background: #DCFCE7; color: #15803D; }
+.codex-chapter-card.palette-social  .codex-chapter-num-badge { background: #FFEDD5; color: #C2410C; }
+
+.codex-chapter-name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px; font-weight: 700;
+    color: #111827; margin: 0 0 12px;
+    line-height: 1.3;
+    /* Truncate long titles to 2 lines */
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; min-height: 42px;
+}
+.codex-chapter-stats {
+    display: flex; flex-direction: column; gap: 6px;
+    margin-bottom: 14px; flex: 1;
+}
+.codex-chapter-stat {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: #6b7280; font-weight: 500;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.dot.res { background: #6366f1; }
+.dot.act { background: #f59e0b; }
+.dot.ass { background: #E8312A; }
+
+.codex-chapter-cta {
+    font-size: 12px; font-weight: 600;
+    color: #E8312A;
+    padding-top: 12px;
+    border-top: 1px solid #f1f3f5;
+}
+
+.codex-empty {
+    background: #fff;
+    border: 1px dashed #d1d5db;
+    border-radius: 14px;
+    padding: 40px;
+    text-align: center;
+    color: #6b7280;
+}
+
+@media (max-width: 900px) {
+    .codex-app { grid-template-columns: 1fr; }
+    .codex-sidebar { display: none; }
+    .codex-course-hero { flex-direction: column; align-items: flex-start; }
+    .codex-course-hero-illustration { width: 120px; height: 120px; }
+    .codex-main { padding: 0 16px 32px; }
+}
+
+/* Video stat dot color */
+.dot.vid { background: #E8312A; }
+.dot.res { background: #6366f1; }
+.dot.ass { background: #f59e0b; }
+
+/* Video stat dot color */
+.dot.vid { background: #E8312A; }
+.dot.res { background: #6366f1; }
+.dot.ass { background: #f59e0b; }
+
+/* ============= Bigger, cleaner chapter cards (3 per row) ============= */
+.codex-chapters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)) !important;
+    gap: 20px !important;
+}
+.codex-chapter-card {
+    padding: 24px !important;
+}
+.codex-chapter-num-badge {
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 16px !important;
+    margin-bottom: 16px !important;
+}
+.codex-chapter-name {
+    font-size: 19px !important;
+    line-height: 1.35 !important;
+    min-height: 52px !important;
+    margin: 0 0 16px !important;
+}
+.codex-chapter-stats {
+    gap: 8px !important;
+    margin-bottom: 18px !important;
+}
+.codex-chapter-stat {
+    font-size: 13px !important;
+}
+.codex-chapter-stat .dot {
+    width: 8px !important;
+    height: 8px !important;
+}
+.codex-chapter-cta {
+    font-size: 13px !important;
+    padding-top: 14px !important;
+}
+
+/* Cap at 3 columns on standard desktop */
+@media (min-width: 1100px) {
+    .codex-chapters-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+@media (min-width: 1600px) {
+    .codex-chapters-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+}
+
+/* Premium sidebar icon refinements + breadcrumb */
+.codex-nav-item { color: #4B5563; }
+.codex-nav-item .codex-nav-icon { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; flex-shrink:0; color: currentColor; }
+.codex-nav-item .codex-nav-icon svg { width:20px !important; height:20px !important; stroke: currentColor; }
+.codex-nav-item:hover { color:#1C2A30; }
+.codex-nav-item.is-active, .codex-nav-item.active { background:#FEF2F1; color:#E8312A; font-weight:600; }
+.codex-nav-item.is-active .codex-nav-icon, .codex-nav-item.active .codex-nav-icon { color:#E8312A; }
+
+.codex-breadcrumb { display:flex; flex-wrap:wrap; align-items:center; gap:6px; font-family:"DM Sans",system-ui,sans-serif; font-size:13px; color:#5A6B73; margin:0 0 20px; }
+.codex-breadcrumb a { color:#5A6B73; text-decoration:none; padding:4px 8px; border-radius:6px; transition:background .15s ease, color .15s ease; }
+.codex-breadcrumb a:hover { background:#F3F4F6; color:#1C5A7A; text-decoration:none; }
+.codex-breadcrumb .sep { color:#C4CDD2; font-size:14px; user-select:none; }
+.codex-breadcrumb .current { padding:4px 8px; color:#1C2A30; font-weight:500; }
+
+/* ============ IFP / Large Touch Screen Optimization ============ */
+/* Activates only at FHD and above (1920px+) — covers both FHD panels (1920x1080)
+   and 4K panels (3840x2160). Below that, the laptop UI stays as-is.
+   Goal: finger-friendly hit targets, high-contrast active states, sensible 4K ceiling. */
+
+@media (min-width: 1920px) {
+    /* --- Type scale: nudge up so text is readable from the back of the room --- */
+    html { font-size: 17px; }
+
+    /* --- Content ceiling: don't let cards stretch across a 4K panel --- */
+    .codex-app-main,
+    .codex-main,
+    .codex-incourse-main {
+        max-width: 2000px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+
+    /* --- Sidebar: bigger touch targets, more vertical breathing room --- */
+    .codex-sidebar { padding: 28px 18px; gap: 6px; min-width: 260px; }
+    .codex-sidebar-logo img { height: 48px; }
+    .codex-nav-item {
+        min-height: 56px;
+        padding: 14px 16px;
+        font-size: 16px;
+        gap: 14px;
+        border-radius: 12px;
+    }
+    .codex-nav-item .codex-nav-icon { width: 28px; height: 28px; }
+    .codex-nav-item .codex-nav-icon svg { width: 24px !important; height: 24px !important; }
+
+    /* Higher contrast active state — visible from 8ft away */
+    .codex-nav-item.is-active,
+    .codex-nav-item.active {
+        background: #FFE0DD;
+        color: #C42820;
+        box-shadow: inset 3px 0 0 #E8312A;
+    }
+
+    /* --- Cards: tap-friendly. Apply to every clickable card class. --- */
+    .codex-subject-card,
+    .codex-chapter-card,
+    .codex-resource-card,
+    .codex-class-card,
+    .codex-continue-card {
+        min-height: 56px;
+        padding: 24px;
+        border-radius: 16px;
+        transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Touch feedback: tap = press effect (replaces hover for touch users) */
+    .codex-subject-card:active,
+    .codex-chapter-card:active,
+    .codex-resource-card:active,
+    .codex-class-card:active,
+    .codex-continue-card:active,
+    .codex-nav-item:active,
+    .codex-empty-state .codex-empty-cta:active {
+        transform: scale(0.98);
+    }
+
+    /* Keyboard focus ring (also helps the panel's overlay tools highlight selection) */
+    .codex-subject-card:focus-visible,
+    .codex-chapter-card:focus-visible,
+    .codex-resource-card:focus-visible,
+    .codex-nav-item:focus-visible,
+    .codex-breadcrumb a:focus-visible {
+        outline: 3px solid #E8312A;
+        outline-offset: 2px;
+    }
+
+    /* --- Resource list rows: bump row height + arrow size --- */
+    .codex-resource-card { gap: 18px; }
+    .codex-resource-icon { width: 48px !important; height: 48px !important; }
+    .codex-resource-icon svg { width: 28px !important; height: 28px !important; }
+    .codex-resource-name { font-size: 17px; }
+    .codex-resource-tag { font-size: 13px; }
+    .codex-resource-arrow { width: 22px !important; height: 22px !important; }
+
+    /* --- Chapter cards: bigger numbers, easier targets --- */
+    .codex-chapter-card { min-height: 140px; }
+    .codex-chapter-num-badge { font-size: 18px; padding: 8px 14px; }
+
+    /* --- Subject cards on dashboard: roomier --- */
+    .codex-subject-card { min-height: 180px; }
+    .codex-subject-card h3 { font-size: 22px; }
+    .codex-chapter-count { font-size: 14px; }
+
+    /* --- Breadcrumb: bigger tap targets --- */
+    .codex-breadcrumb { font-size: 15px; gap: 8px; margin-bottom: 28px; }
+    .codex-breadcrumb a {
+        padding: 10px 14px;
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+    }
+    .codex-breadcrumb .current { padding: 10px 14px; font-size: 15px; }
+    .codex-breadcrumb .sep { font-size: 18px; }
+
+    /* --- CTA / pill buttons: finger-sized --- */
+    .codex-empty-state .codex-empty-cta {
+        padding: 14px 28px;
+        font-size: 16px;
+        min-height: 48px;
+    }
+    .codex-empty-state h3 { font-size: 26px; }
+    .codex-empty-state p { font-size: 16px; max-width: 480px; }
+    .codex-empty-state .codex-empty-illo { width: 160px; height: 160px; }
+
+    /* --- Page headers / hero --- */
+    .codex-page-title { font-size: 32px; }
+    .codex-page-sub { font-size: 16px; }
+    .codex-course-hero h1 { font-size: 36px; }
+    .codex-course-hero p { font-size: 16px; max-width: 600px; }
+
+    /* --- Disable accidental text selection on tap-cards (drag-to-select feels wrong on a panel) --- */
+    .codex-subject-card,
+    .codex-chapter-card,
+    .codex-resource-card,
+    .codex-class-card,
+    .codex-nav-item {
+        user-select: none;
+        -webkit-user-select: none;
+    }
+    /* But preserve selection inside resource content (so teachers CAN copy text from articles) */
+    .codex-resource-content,
+    .codex-incourse-content,
+    .codex-main p,
+    .codex-main li {
+        user-select: text;
+        -webkit-user-select: text;
+    }
+}
+
+/* --- 4K-specific (3840px): even more ceiling tweaks --- */
+@media (min-width: 2560px) {
+    html { font-size: 18px; }
+    .codex-app-main,
+    .codex-main,
+    .codex-incourse-main {
+        max-width: 2400px;
+        padding-left: 64px;
+        padding-right: 64px;
+    }
+    .codex-subject-card { min-height: 220px; }
+    .codex-chapter-card { min-height: 160px; }
+}
+
+/* ============ Completion banner (quiz / H5P review pages) ============ */
+.codex-completion-banner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    border-radius: 16px;
+    margin: 0 0 28px;
+    color: #fff;
+    font-family: "DM Sans", system-ui, sans-serif;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.codex-completion-banner.codex-tone-great   { background: linear-gradient(135deg, #10B981, #059669); }
+.codex-completion-banner.codex-tone-good    { background: linear-gradient(135deg, #1C5A7A, #134B66); }
+.codex-completion-banner.codex-tone-low     { background: linear-gradient(135deg, #F59E0B, #D97706); }
+.codex-completion-banner.codex-tone-neutral { background: linear-gradient(135deg, #1C5A7A, #134B66); }
+
+.codex-completion-icon { flex-shrink: 0; width: 56px; height: 56px; color: #fff; }
+.codex-completion-icon svg { width: 56px !important; height: 56px !important; display: block; }
+
+.codex-completion-text { flex: 1; min-width: 0; }
+.codex-completion-text h2 {
+    font-family: Fraunces, Georgia, serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    margin: 0 0 4px;
+    line-height: 1.2;
+}
+.codex-completion-text p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.92);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.codex-completion-cta {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: #fff;
+    color: #1C2A30 !important;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none !important;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+.codex-completion-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    text-decoration: none !important;
+}
+.codex-completion-cta svg { width: 16px !important; height: 16px !important; }
+
+@media (max-width: 700px) {
+    .codex-completion-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .codex-completion-cta { align-self: stretch; justify-content: center; }
+}
+
+/* IFP scale-up */
+@media (min-width: 1920px) {
+    .codex-completion-banner { padding: 32px 36px; gap: 28px; }
+    .codex-completion-icon, .codex-completion-icon svg { width: 72px !important; height: 72px !important; }
+    .codex-completion-text h2 { font-size: 30px; }
+    .codex-completion-text p  { font-size: 17px; }
+    .codex-completion-cta    { padding: 16px 28px; font-size: 16px; min-height: 52px; }
+}
+
