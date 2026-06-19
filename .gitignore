@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# Except our custom folders
+!theme/codex/
+!theme/codex/**
+!local/codex/
+!local/codex/**
+
+# Ignore this gitignore itself from being ignored
+!.gitignore
