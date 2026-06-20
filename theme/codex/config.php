@@ -37,6 +37,11 @@ $THEME->layouts = [
         'file' => 'login.php',
         'regions' => [],
     ],
+    'frontpage' => [
+        'file' => 'login.php',
+        'regions' => [],
+        'options' => ['nonavbar' => true, 'langmenu' => false],
+    ],
     'codex_app' => [
         'file' => 'codex_app.php',
         'regions' => [],
