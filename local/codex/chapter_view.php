@@ -19,7 +19,7 @@ $PAGE->set_context($ctx);
 $PAGE->set_pagelayout('codex_app');
 $PAGE->set_title(format_string($course->fullname) . ' — Chapter ' . $sectionnum);
 
-$modinfo = get_fast_modinfo($course);
+$modinfo = get_fast_modinfo($course, $USER->id);
 $sectioninfo = $modinfo->get_section_info($sectionnum);
 if (!$sectioninfo) {
     print_error('Invalid chapter number.');
@@ -79,6 +79,11 @@ function local_codex_mod_icon($modname) {
 }
 
 // 5 buckets, displayed in this order
+// Elevated check — must be before the resource loop
+$is_elevated = is_siteadmin() ||
+               has_capability('moodle/course:viewhiddenactivities', $ctx) ||
+               has_capability('moodle/course:update', $ctx);
+
 $groups = [
     'videos'      => ['label' => 'Videos',             'items' => []],
     'resources'   => ['label' => 'Teacher Resources',  'items' => []],
@@ -92,7 +97,9 @@ if (!empty($sectioninfo->sequence)) {
     foreach ($cmids as $cmid) {
         try {
             $cm = $modinfo->get_cm($cmid);
-            if (!$cm || !$cm->uservisible) continue;
+            if (!$cm) continue;
+            if (!empty($cm->deletioninprogress)) continue;
+            if (!$cm->uservisible && !$is_elevated) continue;
             if ($cm->modname === 'label') continue;
 
             $category = local_codex_categorize($cm->modname);
@@ -104,10 +111,12 @@ if (!empty($sectioninfo->sequence)) {
                 'url'     => (string)(new moodle_url('/mod/' . $cm->modname . '/view.php', ['id' => $cm->id])),
             ];
         } catch (Exception $e) {
+            error_log("Codex chapter_view cmid=$cmid: " . $e->getMessage());
             continue;
         }
     }
 }
+
 
 $firstname = !empty($USER->firstname) ? format_string($USER->firstname) : 'there';
 $lastname  = !empty($USER->lastname)  ? format_string($USER->lastname)  : '';

@@ -41,7 +41,14 @@ $total_assessments = 0;
 
 foreach ($sections as $sectionnum => $section) {
     if ($sectionnum == 0) continue;
-    if (!$section->uservisible) continue;
+    // Elevated check for visibility
+        if (!isset($is_elevated)) {
+            $_ctx = context_course::instance($course->id);
+            $is_elevated = is_siteadmin() ||
+                           has_capability('moodle/course:viewhiddenactivities', $_ctx) ||
+                           has_capability('moodle/course:update', $_ctx);
+        }
+        if (!$section->uservisible && !$is_elevated) continue;
 
     $videos = 0;
     $resources = 0;
@@ -52,7 +59,9 @@ foreach ($sections as $sectionnum => $section) {
         foreach ($cmids as $cmid) {
             try {
                 $cm = $modinfo->get_cm($cmid);
-                if (!$cm || !$cm->uservisible) continue;
+                if (!$cm) continue;
+                if (!empty($cm->deletioninprogress)) continue;
+                if (!$cm->uservisible && !$is_elevated) continue;
                 if ($cm->modname === 'label') continue;
                 switch ($cm->modname) {
                     case 'page':
